@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<div class="b-pepsi">
+		<strong>WIDGET AND PROMES DEFINED AND RESOLVED in Index, LITERALS OBJECT PATTERN</strong>
+	</div>
+	<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+  <script type="text/javascript">
+  	(function(window, $, undefined){
+  		"use strict";
+
+  		var Exposed_obj = window.Exposed_obj || {};
+
+  		if(typeof window.Exposed_obj === "undefined") {
+  			window.Exposed_obj = Exposed_obj;
+  		}
+
+  		Exposed_obj.MyWidget = {};
+
+  		Exposed_obj.MyWidget.config = {
+  			url: ""
+  		};
+
+  		Exposed_obj.MyWidget.data = {};
+
+  		Exposed_obj.MyWidget.actions = {
+  			init: function(url){
+  				Exposed_obj.MyWidget.config.url = url;
+  			},
+  			requestJSON: function(){
+  				return $.getJSON(Exposed_obj.MyWidget.config.url);
+  			}
+  		};
+
+  		var onReady = function(){
+  			console.log('INDEX');
+  			var obj = {};
+  			var requestAddress = 'https://jsonplaceholder.typicode.com/todos/1';
+  			Exposed_obj.MyWidget.actions.init(requestAddress); 
+  			Exposed_obj.MyWidget.actions.requestJSON()
+  			.then(function(response){
+  				console.log(response);
+  				obj = response;
+  			})
+  			.catch(function(response){
+  				console.warn('NOT RESOLVED');
+  			});
+  		};
+
+  		$(document).ready(onReady);
+
+  	})(window, jQuery);
+  </script>
+</body>
+
+</html>

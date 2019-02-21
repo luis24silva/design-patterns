@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<div class="b-pepsi">
+		<strong>PROMESS RESOLVED IN INDEX, PROTOTYPE PATTERN</strong>
+	</div>
+	<p>En este ejemplo, el widget recibe una URL como parámetro de entrada y retorna una promesa</p>
+	<p>Al ser evaluada como <strong>Succesfull,</strong> ésta devuelve un JSON</p>
+</body>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+<script src="./widget.js"></script>
+<script type="text/javascript">
+	(function(){
+		"use strict";
+
+		var url = 'https://jsonplaceholder.typicode.com/todos/1';
+		var widget = new Exposed_obj.MyWidget();/* <--- Instanciamos nuestro objeto */
+
+		widget.init(url); /* Mandamos a llamar a sus métodos */
+		widget.requestJSON()
+		.then(function(response){
+			console.log(response);
+		})
+		.catch(function(){
+			console.warn("ERROR INDEX");
+		});
+		//widget.requestJSON();
+		console.log('INDEX');
+
+	})();
+</script>
+</html>
